@@ -27,13 +27,15 @@ export function Kanban<T extends { id: string }>({
   const [overCol, setOverCol] = useState<string | null>(null);
 
   return (
-    <div className="flex items-start gap-4 overflow-x-auto pb-4">
+    <div className="flex snap-x snap-proximity items-start gap-4 overflow-x-auto pb-4">
       {cols.map((col) => {
         const inCol = items.filter((i) => stageOf(i) === col.key);
         const isOver = overCol === col.key;
         return (
           <div
             key={col.key}
+            role="group"
+            aria-label={`${col.label} column`}
             onDragOver={(e) => {
               e.preventDefault();
               if (overCol !== col.key) setOverCol(col.key);
@@ -48,7 +50,7 @@ export function Kanban<T extends { id: string }>({
               setDragId(null);
               if (id) onMove(id, col.key);
             }}
-            className={`w-[290px] min-w-[270px] shrink-0 rounded-xl border p-3 transition-all ${
+            className={`w-[290px] min-w-[270px] snap-start shrink-0 rounded-lg border p-3 transition-all ${
               isOver
                 ? "border-brand bg-brand-soft/50 ring-2 ring-brand/25"
                 : "border-line bg-white/45"

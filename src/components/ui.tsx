@@ -267,8 +267,14 @@ export function StatCard({
     moss: "bg-moss-soft text-moss-deep",
     danger: "bg-danger-soft text-danger-deep",
   };
+  const accents: Record<string, string> = {
+    brand: "border-t-brand",
+    gold: "border-t-gold",
+    moss: "border-t-moss",
+    danger: "border-t-danger",
+  };
   return (
-    <div className="card animate-rise p-4">
+    <div className={`card animate-rise border-t-2 p-4 ${accents[tone]}`}>
       <div className="flex items-start justify-between">
         <p className="text-xs font-semibold text-ink-soft">{label}</p>
         <span

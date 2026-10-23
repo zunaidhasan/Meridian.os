@@ -396,17 +396,13 @@ export default function LandingPage() {
       {/* hero */}
       <section id="top" className="relative overflow-hidden">
         <div className="absolute inset-0" style={GRID_BG} aria-hidden />
-        <div
-          className="absolute -top-40 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-brand/25 blur-[140px]"
-          aria-hidden
-        />
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-5 py-16 lg:grid-cols-2 lg:py-24">
           <div>
             <span className="chip border-0 bg-brand/15 text-brand-soft ring-1 ring-inset ring-brand/40">
               <Icon name="spark" className="h-3.5 w-3.5" />
               The Business Operating System
             </span>
-            <h1 className="mt-5 font-display text-[40px] font-semibold leading-[1.05] tracking-tight text-white sm:text-[54px]">
+            <h1 className="mt-5 max-w-[12ch] font-display text-[40px] font-semibold leading-[1.05] tracking-tight text-white sm:text-[54px]">
               Run the whole business on{" "}
               <span className="text-brand-soft">one set of boards.</span>
             </h1>

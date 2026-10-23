@@ -59,6 +59,7 @@ function SidebarContent({
               key={n.href}
               href={n.href}
               onClick={onNavigate}
+              aria-current={active ? "page" : undefined}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
                 active
                   ? "bg-brand text-white shadow-sm"
@@ -161,7 +162,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
       {/* desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 bg-night lg:block">
+      <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 bg-night lg:block">
         <SidebarContent user={user} onSignOut={signOut} />
       </aside>
 
@@ -172,7 +173,10 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             className="absolute inset-0 bg-night/60 backdrop-blur-[2px]"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="absolute inset-y-0 left-0 w-64 bg-night shadow-2xl">
+          <aside
+            id="mobile-navigation"
+            className="absolute inset-y-0 left-0 w-64 bg-night shadow-2xl"
+          >
             <SidebarContent
               user={user}
               onSignOut={signOut}
@@ -182,7 +186,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </div>
       )}
 
-      <div className="lg:pl-60">
+      <div className="lg:pl-64">
         {/* topbar */}
         <header className="sticky top-0 z-30 border-b border-line bg-paper/85 backdrop-blur">
           <div className="flex items-center gap-3 px-4 py-3 lg:px-8">
@@ -190,15 +194,17 @@ export default function AppLayout({ children }: { children: ReactNode }) {
               onClick={() => setMobileOpen(true)}
               className="rounded-lg p-2 text-ink-soft transition hover:bg-line-soft lg:hidden"
               aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
             >
               <Icon name="menu" className="h-5 w-5" />
             </button>
-            <div className="hidden items-center gap-2 text-sm sm:flex">
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+            <div className="flex min-w-0 items-center gap-2 text-sm">
+              <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint sm:block">
                 Meridian OS
               </span>
-              <span className="text-ink-faint">/</span>
-              <span className="font-semibold text-ink">{section}</span>
+              <span className="hidden text-ink-faint sm:block">/</span>
+              <span className="truncate font-semibold text-ink">{section}</span>
             </div>
             <div className="ml-auto flex items-center gap-2.5">
               <div className="relative hidden md:block">

@@ -154,7 +154,8 @@ export default function LeadsPage() {
                 </p>
                 <button
                   onClick={() => remove(lead)}
-                  className="shrink-0 text-ink-faint opacity-0 transition hover:text-danger group-hover:opacity-100"
+                  aria-label={`Delete ${lead.company}`}
+                  className="shrink-0 rounded-md p-1 text-ink-faint opacity-100 transition hover:bg-danger-soft hover:text-danger sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100"
                   title="Delete lead"
                 >
                   <Icon name="trash" className="h-3.5 w-3.5" />
